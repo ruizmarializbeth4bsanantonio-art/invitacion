@@ -1,0 +1,313 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primario: #fff;
+    --fondo: #ffebf2; 
+    --fondo-sobre: #ffe3ed; 
+    --solapa-sobre: #ffccd5; 
+    --cuerpo-sobre: #ffc1d1; 
+    --sombra: rgba(0, 0, 0, 0.2);
+    --texto: #003049; 
+    --corazon: #ffb347; 
+    --naranja: #c96c23;
+    --crema: #fff9f0;
+}
+
+body {
+    background: var(--fondo);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+h1 {
+    font-family: "Marck Script", serif; 
+    text-align: center;
+    font-size: 60px;
+    margin-bottom: 50px;
+    color: var(--naranja);
+}
+
+.contenedor {
+    width: 400px;
+}
+
+/* ===== SOBRE ===== */
+.envoltura-sobre {
+    position: relative;
+    background-color: var(--fondo-sobre);
+    box-shadow: 0 0 40px var(--sombra);
+    border-radius: 15px;
+    perspective: 1200px;
+}
+
+.sobre {
+    position: relative;
+    width: 400px;
+    height: 300px;
+    cursor: pointer;
+}
+
+.sobre::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 4;
+    border-top: 180px solid var(--solapa-sobre);
+    border-right: 200px solid transparent;
+    border-left: 200px solid transparent;
+    transform-origin: top;
+    transition: all 0.5s ease-in-out 0.7s;
+    border-radius: 10px;
+}
+
+.solapa-derecha {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    clip-path: polygon(100% 0, 0 100%, 100% 100%);
+    background-color: var(--cuerpo-sobre);
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    pointer-events: auto;
+}
+
+.solapa-izquierda {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    clip-path: polygon(0 0, 0 100%, 100% 100%);
+    background-color: var(--cuerpo-sobre);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    pointer-events: auto;
+}
+
+/* ===== CARTA ===== */
+.carta {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--primario);
+    text-align: center;
+    box-shadow: 0 0 5px var(--sombra);
+    padding: 20px;
+    border-radius: 10px;
+    transition: transform 0.6s ease, opacity 0.4s ease;
+    z-index: 1;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(0) scale(0.95);
+    opacity: 0;
+}
+
+.carta.mostrar-carta,
+.carta.abierta {
+    transform: translateY(-150px) scale(1.05);
+    opacity: 1;
+    z-index: 10000;
+    pointer-events: auto;
+}
+
+/* ===== CONTENIDO DE LA CARTA ===== */
+.contenido {
+    font-family: "Gill Sans", Calibri, sans-serif;
+    color: var(--texto);
+    text-align: left;
+    font-size: 14px;
+    border: 3px dotted var(--texto);
+    padding: 20px;
+    height: 100%;
+    line-height: 1.6;
+    overflow-y: auto;
+    background-color: var(--crema);
+    flex: 1;
+}
+
+.contenido strong {
+    display: block;
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 15px;
+    color: var(--naranja);
+}
+
+.contenido p {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* ===== DETALLES DENTRO DE LA CARTA ===== */
+.details-container {
+    margin-top: 20px;
+    border-top: 2px dashed var(--naranja);
+    padding-top: 20px;
+}
+
+.detail-card {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    padding: 12px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    border-left: 4px solid var(--naranja);
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+}
+
+.detail-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.detail-icon {
+    font-size: 20px;
+}
+
+.detail-label {
+    color: var(--naranja);
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.detail-content {
+    color: var(--texto);
+    font-size: 15px;
+    padding-left: 30px;
+}
+
+/* ===== BOTONES ===== */
+.detail-card.button-card {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.detail-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 15px 20px;
+    border-radius: 50px;
+    border: 3px solid var(--naranja);
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    background: linear-gradient(135deg, #fcc277, #ffb347);
+    color: #703409;
+}
+
+.detail-button:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 3px 3px 0 rgba(201, 108, 35, 0.3);
+}
+
+.button-icon {
+    font-size: 20px;
+}
+
+/* ===== CORAZÓN ===== */
+.corazon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    background-color: var(--corazon);
+    transform: translate(-50%, -50%) rotate(45deg);
+    transition: transform 0.5s ease-in-out;
+    z-index: 9999;
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.corazon::before,
+.corazon::after {
+    content: "";
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: var(--corazon);
+    border-radius: 100%;
+}
+
+.corazon:before {
+    top: -15px;
+}
+
+.corazon:after {
+    right: 15px;
+}
+
+/* ===== CLASES DINÁMICAS ===== */
+.abierto .sobre::before {
+    transform: rotateX(180deg);
+    z-index: 0;
+}
+
+.abierto .corazon {
+    transform: translate(-50%, -50%) rotate(90deg);
+    transition-delay: 0.4s;
+}
+
+.envoltura-sobre.desactivar-sobre .sobre::before {
+    pointer-events: none;
+}
+
+/* ===== RESPONSIVE ===== */
+@media screen and (max-width:400px) {
+    .contenedor {
+        width: 300px;
+    }
+
+    .sobre {
+        width: 300px;
+        height: 250px;
+    }
+
+    .sobre::before {
+        border-top:150px solid var(--solapa-sobre);
+        border-right: 150px solid transparent;
+        border-left: 150px solid transparent;
+    }
+
+    .carta.mostrar-carta,
+    .carta.abierta {
+        transform: translateY(-240px);
+    }
+    
+    .contenido {
+        font-size: 12px;
+        padding: 15px;
+    }
+    
+    .detail-card {
+        padding: 10px;
+    }
+}

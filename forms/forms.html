@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="fort.css">
+
+</head>
+<body> 
+    <h1>REGISTRO DE ASISTENCIA</h1>
+    <form id="registroForm">
+    <h2> Nombre:</h2>
+    <input type="text" name="nombre" placeholder="Tu nombre" required>
+     <h2>¿Quieres que se incluya piñata y que bebida quisieras?</h2>
+    <textarea name="mensaje" placeholder="Mensaje (opcional)"></textarea>
+
+    <div class="opciones">
+        <label>
+            <input type="radio" name="asistencia" value="Vendré" required>
+             Asistire
+        </label>
+
+    </div>
+
+    <button type="submit" class="detail-button">
+        Enviar confirmación
+    </button>
+
+</form> <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script src="fot.js"></script>
+
+</body>
+</html>
